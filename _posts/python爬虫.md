@@ -1,6 +1,6 @@
 ---
 title: python爬虫
-date: 2019-01-08 22:05:35
+date: 2018-01-08 22:05:35
 tags:
 ---
 
@@ -2200,6 +2200,7 @@ class ProxyMiddleware:
 - 第一个类设置请user-agent
 - 第二个类仅仅设置了 代理
 - ***`代理一定记得加上 http://或者 https://` 否则报错 切记***
+- **记得必须要在使用代理前进行判断，判断该代理能否运行，否则程序报错**
 
 
 
@@ -2438,5 +2439,86 @@ ITEM_PIPELINES = {
     'LcFirst.pipelines.JsonWriterPipeline': 302,
     'LcFirst.pipelines.quchongPipeline': 303,
 }
+```
+
+
+
+## Setting文件
+
+
+
+### 是否遵守爬虫协议
+
+```python
+ROBOTSTXT_OBEY = False # 不遵守robots.txt 规定的协议
+```
+
+
+
+### 默认并发请求数
+
+- 默认是16个
+- 通过设置 CONCURRENT_REQUESTS = 32 可以设置为32个
+
+```python
+# Configure maximum concurrent requests performed by Scrapy (default: 16)
+#CONCURRENT_REQUESTS = 32
+```
+
+
+
+### 请求间歇
+
+- 如果两次请求同一个网站，是否需要间歇
+- 默认间歇值为0
+- 设置 DOWNLOAD_DELAY = 3 ，设置间隔时间为3s
+
+
+
+```python
+# Configure a delay for requests for the same website (default: 0)
+# See https://doc.scrapy.org/en/latest/topics/settings.html#download-delay
+# See also autothrottle settings and docs
+#DOWNLOAD_DELAY = 3
+```
+
+
+
+### 每个域名的并发请求数 
+
+- CONCURRENT_REQUESTS_PER_IP = 16，设置每个ip的并发请求数
+
+
+
+```python
+# The download delay setting will honor only one of:
+#CONCURRENT_REQUESTS_PER_DOMAIN = 16
+#CONCURRENT_REQUESTS_PER_IP = 16
+```
+
+
+
+### 是否启用cookies
+
+- 默认是启用的
+
+
+
+```python
+# Disable cookies (enabled by default)
+#COOKIES_ENABLED = False
+```
+
+
+
+### 是否启用Telnet控制台
+
+- 默认是启用的
+
+
+
+```python
+# Disable Telnet Console (enabled by default)
+#TELNETCONSOLE_ENABLED = False
 ```
 
